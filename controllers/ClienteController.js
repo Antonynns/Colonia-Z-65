@@ -36,16 +36,21 @@ class ClienteController{
         const status = req.query.s;
         const VClientes = await ClienteModel.find();
         res.render("cliente/relatorio", {VClientes, status});
-}
+'   '}
     static async detalhar(req, res){
         const id = req.params.id;
         const c = await ClienteModel.findOne({id:id});
         res.render("cliente/detalhar", {c});
-}
+    }
+    static async imprimir(req, res){
+        const id = req.params.id;
+        const c = await ClienteModel.findOne({id:id});
+        res.render("cliente/boleto", {c});
+    }
     static cadastrarRender(req, res){
         let clienteUpdate = {}
         res.render("cliente/cadastrar", {clienteUpdate});
-}
+    }
     static async deletar(req, res){
             const id = req.params.id;
             await ClienteModel.findOneAndDelete({id:id});
